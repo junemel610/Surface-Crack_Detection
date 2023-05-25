@@ -35,10 +35,10 @@ else:
             st.image(image, use_column_width=True)
             prediction = import_and_predict(image, model)
             if prediction >= 0.5:
-                result = 'Crack'
+                result = 'Crack/s'
             else:
-                result = 'No Crack'
-            string = f"Surface: {result}!"
+                result = 'no Crack/s'
+            string = f"The Surface has {result}!"
             st.success(string)
         else:
             st.text("The file is invalid. Upload a valid image file.")
