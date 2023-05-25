@@ -16,7 +16,7 @@ classes = {0: 'Crack', 1: 'No Crack'}
 st.write("""
 # Surface Crack Detection System
 """)
-st.write("### Deployed by Andrea Faith Alimorong and Meljune Royette Go")
+st.write("#### Deployed by Andrea Faith Alimorong and Meljune Royette Go")
 file = st.file_uploader("Choose a photo from computer", type=["jpg", "png"])
 
 def import_and_predict(image_data, model):
