@@ -6,6 +6,7 @@ def load_model():
   model=tf.keras.models.load_model('SurfaceCrackDetection.h5')
   return model
 model=load_model()
+classes = {0: 'Positive', 1: 'Negative'}
 st.write("""
 # Surface Crack Detection System"""
 )
@@ -27,6 +28,8 @@ else:
     image=Image.open(file)
     st.image(image,use_column_width=True)
     prediction=import_and_predict(image,model)
-    class_names=['Looks like there is a crack on that image you just provided','Looks like there is no crack on that image you just provided']
+    class_names= classes
+    #class_names=['Looks like there is a crack on that image you just provided',
+    #             'Looks like there is no crack on that image you just provided']
     string="PREDICTION : "+class_names[np.argmax(prediction)]
     st.success(string)
