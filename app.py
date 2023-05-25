@@ -1,11 +1,12 @@
 import streamlit as st
 import tensorflow as tf
+from keras.models import load_model
 import numpy as np
 from PIL import Image, ImageOps
 import cv2
 
 @st.cache(allow_output_mutation=True)
-def load_saved_model():
+def load_model_from_file():
   model=tf.keras.models.load_model('SurfaceCrackDetection.h5')
   return model
 model=load_model()
