@@ -9,7 +9,7 @@ import cv2
 def load_model_from_file():
   model=tf.keras.models.load_model('SurfaceCrackDetection.h5')
   return model
-model=load_model()
+model=load_model_from_file()
 classes = {0: 'Positive', 1: 'Negative'}
 st.write("""
 # Surface Crack Detection System"""
