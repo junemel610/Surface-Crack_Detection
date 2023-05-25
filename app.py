@@ -35,9 +35,9 @@ else:
             st.image(image, use_column_width=True)
             prediction = import_and_predict(image, model)
             if prediction >= 0.5:
-                result = 'No Crack'
-            else:
                 result = 'Crack'
+            else:
+                result = 'No Crack'
             string = f"Surface: {result}!"
             st.success(string)
         else:
