@@ -8,7 +8,7 @@ import cv2
 @st.cache_resource
 
 def load_model_from_file():
-  model=tf.keras.models.load_model('SurfaceCrackDetection.h5')
+  model=tf.keras.models.load_model('SurfaceCrackDetection2.h5')
   return model
 model=load_model_from_file()
 classes = {0: 'Visible Crack/s', 1: 'No Visible Crack/s'}
