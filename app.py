@@ -11,6 +11,8 @@ def load_model_from_file():
 
 model = load_model_from_file()
 
+classes = {0: 'Crack', 1: 'No Crack'}
+
 st.write("""
 # Surface Crack Detection System
 """)
@@ -20,8 +22,6 @@ def import_and_predict(image_data, model):
     size = (120, 120)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
-    if len(img.shape) == 2:  # Convert grayscale images to RGB
-        img = np.stack((img,) * 3, axis=-1)
     img_reshape = np.reshape(img, (1, 120, 120, 3))
     prediction = model.predict(img_reshape)
     return prediction[0][0]
@@ -35,9 +35,9 @@ else:
             st.image(image, use_column_width=True)
             prediction = import_and_predict(image, model)
             if prediction >= 0.5:
-                result = 'No Visible Crack/s'
+                result = 'No Crack'
             else:
-                result = 'Visible Crack/s'
+                result = 'Crack'
             string = f"Surface: {result}!"
             st.success(string)
         else:
