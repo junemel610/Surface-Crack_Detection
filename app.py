@@ -3,7 +3,6 @@ import tensorflow as tf
 from keras.models import load_model
 import numpy as np
 from PIL import Image, ImageOps
-import cv2
 
 @st.cache(allow_output_mutation=True)
 def load_model_from_file():
@@ -22,7 +21,7 @@ def import_and_predict(image_data, model):
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
     if len(img.shape) == 2:  # Convert grayscale images to RGB
-        img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        img = np.stack((img,) * 3, axis=-1)
     img_reshape = np.reshape(img, (1, 120, 120, 3))
     prediction = model.predict(img_reshape)
     return prediction[0][0]
