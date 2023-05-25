@@ -1,11 +1,11 @@
 import streamlit as st
 import tensorflow as tf
-from keras.models import load_model
 import numpy as np
 from PIL import Image, ImageOps
+import cv2
 
 @st.cache(allow_output_mutation=True)
-def load_model():
+def load_saved_model():
   model=tf.keras.models.load_model('SurfaceCrackDetection.h5')
   return model
 model=load_model()
@@ -15,9 +15,6 @@ st.write("""
 )
 file=st.file_uploader("Choose a photo from computer",type=["jpg","png"])
 
-import cv2
-from PIL import Image,ImageOps
-import numpy as np
 def import_and_predict(image_data,model):
     size=(120,120)
     image=ImageOps.fit(image_data,size,Image.ANTIALIAS)
