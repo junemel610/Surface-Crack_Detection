@@ -6,24 +6,25 @@ from PIL import Image, ImageOps
 import cv2
 
 @st.cache_resource
-
 def load_model_from_file():
-  model=tf.keras.models.load_model('SurfaceCrackDetection2.h5')
-  return model
-model=load_model_from_file()
-classes = {0: 'Visible Crack/s', 1: 'No Visible Crack/s'}
+    model = tf.keras.models.load_model('SurfaceCrackDetection2.h5')
+    return model
+
+model = load_model_from_file()
+
 st.write("""
-# Surface Crack Detection System"""
-)
-file=st.file_uploader("Choose a photo from computer",type=["jpg","png"])
+# Surface Crack Detection System
+""")
+file = st.file_uploader("Choose a photo from computer", type=["jpg", "png"])
 
 def import_and_predict(image_data, model):
-    size = (120,120)
+    size = (120, 120)
     image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
     img = np.asarray(image)
     img_reshape = np.reshape(img, (1, 120, 120, 3))
     prediction = model.predict(img_reshape)
-    return prediction
+    return prediction[0][0]
+
 if file is None:
     st.text("Please upload an image file")
 else:
@@ -32,8 +33,11 @@ else:
         if image:
             st.image(image, use_column_width=True)
             prediction = import_and_predict(image, model)
-            class_names = classes
-            string = f"Surface: {class_names[np.argmax(prediction)]}!"
+            if prediction >= 0.5:
+                result = 'No Visible Crack/s'
+            else:
+                result = 'Visible Crack/s'
+            string = f"Surface: {result}!"
             st.success(string)
         else:
             st.text("The file is invalid. Upload a valid image file.")
