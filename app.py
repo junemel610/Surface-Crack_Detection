@@ -23,7 +23,7 @@ st.title("Surface Crack Detection System")
 st.markdown("---")
 
 # Create sidebar
-st.sidebar.title("Options")
+st.sidebar.title("Upload Images")
 file = st.sidebar.file_uploader("Choose a photo from your computer", type=["jpg", "png"])
 
 # Process the uploaded image
@@ -63,6 +63,5 @@ else:
         st.markdown("An error occurred while processing the image.")
         st.markdown(f"Error Details: {str(e)}")
 
-# Add some space and footer
 st.markdown("---")
-st.markdown("Developed by [Your Name]")
+st.markdown("Developed by Andrea Faith Alimorong and Meljune Royette G. Go")
