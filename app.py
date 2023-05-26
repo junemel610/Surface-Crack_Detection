@@ -4,7 +4,7 @@ from keras.models import load_model
 import numpy as np
 from PIL import Image, ImageOps
 
-st.set_page_config(page_title="Surface Crack Detection App")
+st.set_page_config(page_title="Surface Crack Detection System")
 
 @st.cache(allow_output_mutation=True)
 def load_model_from_file():
